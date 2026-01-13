@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أدواتي - أدوات أونلاين ذكية ومجانية</title>
+    <meta name="description" content="أدوات أونلاين مجانية باللغة العربية - محول PDF، ضاغط صور، مولد كلمات مرور وأكثر">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366F1;
+            --secondary: #8B5CF6;
+            --success: #10B981;
+            --bg: #F9FAFB;
+            --text: #1F2937;
+            --gray: #6B7280;
+            --light: #F3F4F6;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* النافبار */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        /* الهيرو */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 50px;
+            padding: 8px;
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-family: 'Cairo', sans-serif;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+        }
+
+        .search-box button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        /* الأقسام */
+        .section {
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 50px;
+            color: var(--text);
+        }
+
+        /* الفئات */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .category-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .category-card p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* الأدوات الشائعة */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .tool-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .tool-card h4 {
+            font-size: 16px;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .tool-badge {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* المميزات */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 20px;
+            color: white;
+        }
+
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: var(--gray);
+        }
+
+        /* الإحصائيات */
+        .stats {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .stat h3 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .stat p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            background: var(--light);
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        /* الفوتر */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- النافبار -->
+    <nav>
+        <div class="container">
+            <div class="logo">أدواتي</div>
+            <ul>
+                <li><a href="#tools">الأدوات</a></li>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#pricing">الأسعار</a></li>
+                <li><a href="#blog">المدونة</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+                <li><button class="btn-primary">ابدأ مجاناً</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- الهيرو -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>أدوات ذكية تسهّل حياتك اليومية 🚀</h1>
+            <p>أكثر من 20 أداة أونلاين مجانية باللغة العربية - محولات، ضواغط، مولدات وأكثر</p>
+            <div class="search-box">
+                <input type="text" placeholder="ابحث عن أداة... (مثال: محول PDF، ضاغط صور)">
+                <button>🔍 بحث</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفئات -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">استكشف الفئات</h2>
+            <div class="categories">
+                <div class="category-card">
+                    <div class="category-icon">📝</div>
+                    <h3>أدوات النصوص</h3>
+                    <p>تحرير وتحويل النصوص العربية</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🖼️</div>
+                    <h3>أدوات الصور</h3>
+                    <p>تحرير وضغط ومعالجة الصور</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📄</div>
+                    <h3>أدوات PDF</h3>
+                    <p>دمج وتحويل وضغط ملفات PDF</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💻</div>
+                    <h3>أدوات المطورين</h3>
+                    <p>أدوات تطوير ويب احترافية</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💰</div>
+                    <h3>حاسبات مالية</h3>
+                    <p>حسابات الزكاة والقروض</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">📊</div>
+                    <h3>أدوات التسويق</h3>
+                    <p>تحليل وتحسين المحتوى</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأدوات الشائعة -->
+    <section class="section" id="tools" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">الأدوات الأكثر استخداماً ⭐</h2>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">📄</div>
+                    <h4>محول PDF</h4>
+                    <span class="tool-badge">مجاني</span>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🗜️</div>
+                    <h4>ضاغط الصور</h4>
+                    <span class="tool-badge">شائع</span>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🔐</div>
+                    <h4>مولد كلمات المرور</h4>
+                    <span class="tool-badge">آمن</span>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">✂️</div>
+                    <h4>إزالة خلفية الصور</h4>
+                    <span class="tool-badge">AI</span>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🔢</div>
+                    <h4>عداد الكلمات</h4>
+                    <span class="tool-badge">سريع</span>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">📱</div>
+                    <h4>مولد QR Code</h4>
+                    <span class="tool-badge">جديد</span>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">🎨</div>
+                    <h4>Color Picker</h4>
+                    <span class="tool-badge">للمطورين</span>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">💱</div>
+                    <h4>محول العملات</h4>
+                    <span class="tool-badge">مباشر</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المميزات -->
+    <section class="section features" id="features">
+        <div class="container">
+            <h2 class="section-title">لماذا أدواتي؟ 💎</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>سريع وسهل</h3>
+                    <p>استخدم الأدوات مباشرة بدون تسجيل أو تثبيت</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>آمن ومحمي</h3>
+                    <p>ملفاتك محمية ويتم حذفها تلقائياً بعد المعالجة</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌐</div>
+                    <h3>باللغة العربية</h3>
+                    <p>واجهة عربية كاملة مع دعم النصوص العربية</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📱</div>
+                    <h3>متوافق مع الجوال</h3>
+                    <p>يعمل على جميع الأجهزة والشاشات</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🆓</div>
+                    <h3>مجاني بالكامل</h3>
+                    <p>معظم الأدوات مجانية بدون حدود استخدام</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>دقة عالية</h3>
+                    <p>نتائج احترافية بجودة عالية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الإحصائيات -->
+    <section class="section stats">
+        <div class="container">
+            <h2 class="section-title">أرقامنا تتحدث 📊</h2>
+            <div class="stats-grid">
+                <div class="stat">
+                    <h3>500K+</h3>
+                    <p>مستخدم نشط</p>
+                </div>
+                <div class="stat">
+                    <h3>2M+</h3>
+                    <p>عملية معالجة</p>
+                </div>
+                <div class="stat">
+                    <h3>25+</h3>
+                    <p>أداة مجانية</p>
+                </div>
+                <div class="stat">
+                    <h3>99.9%</h3>
+                    <p>وقت التشغيل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta">
+        <div class="container">
+            <h2>جاهز للبدء؟ 🚀</h2>
+            <p>ابدأ باستخدام أدواتنا المجانية الآن</p>
+            <button class="btn-primary" style="font-size: 18px; padding: 15px 40px;">استكشف الأدوات</button>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>أدواتي</h3>
+                <p>منصة عربية توفر أدوات أونلاين ذكية ومجانية لتسهيل مهامك اليومية</p>
+                <div class="social-links">
+                    <div class="social-icon">📘</div>
+                    <div class="social-icon">🐦</div>
+                    <div class="social-icon">📷</div>
+                    <div class="social-icon">💼</div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#">الصفحة الرئيسية</a></li>
+                    <li><a href="#">جميع الأدوات</a></li>
+                    <li><a href="#">الأسعار</a></li>
+                    <li><a href="#">المدونة</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>الدعم</h3>
+                <ul>
+                    <li><a href="#">مركز المساعدة</a></li>
+                    <li><a href="#">الأسئلة الشائعة</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                    <li><a href="#">الشروط والأحكام</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>اشترك في النشرة</h3>
+                <p>احصل على آخر الأدوات والتحديثات</p>
+                <div class="search-box" style="margin-top: 15px;">
+                    <input type="email" placeholder="بريدك الإلكتروني">
+                    <button>اشترك</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 أدواتي. جميع الحقوق محفوظة | صُنع بـ ❤️ في العالم العربي</p>
+        </div>
+    </footer>
+</body>
+</html>

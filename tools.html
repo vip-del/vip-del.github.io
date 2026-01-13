@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جميع الأدوات - أدواتي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366F1;
+            --secondary: #8B5CF6;
+            --success: #10B981;
+            --bg: #F9FAFB;
+            --text: #1F2937;
+            --gray: #6B7280;
+            --light: #F3F4F6;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* النافبار */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* الهيدر -->
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* الفلاتر */
+        .filters {
+            background: white;
+            padding: 30px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .filters .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--light);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--text);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* الأدوات */
+        .tools-section {
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-group {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        .tool-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .tool-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .tool-card p {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .tool-badge {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .tool-badge.premium {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+        }
+
+        .tool-badge.new {
+            background: var(--success);
+            color: white;
+        }
+
+        .use-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.3s;
+        }
+
+        .use-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .category-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- النافبار -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">أدواتي</a>
+            <ul>
+                <li><a href="index.html">الرئيسية</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="#">المدونة</a></li>
+                <li><a href="#">تواصل معنا</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- الهيدر -->
+    <div class="page-header">
+        <h1>جميع الأدوات 🛠️</h1>
+        <p>أكثر من 25 أداة مجانية لتسهيل مهامك اليومية</p>
+    </div>
+
+    <!-- الفلاتر -->
+    <div class="filters">
+        <div class="container">
+            <button class="filter-btn active">الكل</button>
+            <button class="filter-btn">النصوص</button>
+            <button class="filter-btn">الصور</button>
+            <button class="filter-btn">PDF</button>
+            <button class="filter-btn">المطورين</button>
+            <button class="filter-btn">المالية</button>
+            <button class="filter-btn">التسويق</button>
+        </div>
+    </div>
+
+    <!-- الأدوات -->
+    <div class="tools-section">
+        <div class="container">
+            <!-- مجموعة النصوص -->
+            <div class="category-group">
+                <h2 class="category-title">📝 أدوات النصوص</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📝</div>
+                        <h3>محول النصوص العربية</h3>
+                        <p>تشكيل، إزالة تشكيل، وتصحيح النصوص العربية بذكاء</p>
+                        <span class="tool-badge">مجاني</span>
+                        <span class="tool-badge new">جديد</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔢</div>
+                        <h3>عداد الكلمات والأحرف</h3>
+                        <p>احسب عدد الكلمات، الأحرف، الجمل والفقرات</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">💯</div>
+                        <h3>محول الأرقام إلى كتابة</h3>
+                        <p>حول الأرقام إلى كلمات بالعربية (123 → مئة وثلاثة وعشرون)</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔐</div>
+                        <h3>مولد كلمات المرور</h3>
+                        <p>أنشئ كلمات مرور قوية وآمنة بضغطة واحدة</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مجموعة الصور -->
+            <div class="category-group">
+                <h2 class="category-title">🖼️ أدوات الصور</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🗜️</div>
+                        <h3>ضاغط الصور</h3>
+                        <p>قلل حجم الصور حتى 80% مع الحفاظ على الجودة</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔄</div>
+                        <h3>محول صيغ الصور</h3>
+                        <p>حول بين JPG، PNG، WebP، وغيرها</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">✂️</div>
+                        <h3>إزالة خلفية الصور</h3>
+                        <p>احذف الخلفية تلقائياً باستخدام الذكاء الاصطناعي</p>
+                        <span class="tool-badge premium">Premium</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">📐</div>
+                        <h3>تغيير حجم الصور</h3>
+                        <p>غيّر أبعاد الصور بسهولة وبجودة عالية</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مجموعة PDF -->
+            <div class="category-group">
+                <h2 class="category-title">📄 أدوات PDF</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📄</div>
+                        <h3>محول PDF</h3>
+                        <p>حول PDF إلى Word، Excel، PowerPoint والعكس</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">📑</div>
+                        <h3>دمج ملفات PDF</h3>
+                        <p>ادمج عدة ملفات PDF في ملف واحد</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🗜️</div>
+                        <h3>ضاغط PDF</h3>
+                        <p>قلل حجم ملفات PDF حتى 90%</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">✂️</div>
+                        <h3>تقسيم PDF</h3>
+                        <p>قسّم ملف PDF إلى عدة ملفات</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مجموعة المطورين -->
+            <div class="category-group">
+                <h2 class="category-title">💻 أدوات المطورين</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🎨</div>
+                        <h3>Color Picker</h3>
+                        <p>اختر الألوان واحصل على كودها بكل الصيغ</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">📱</div>
+                        <h3>مولد QR Code</h3>
+                        <p>أنشئ أكواد QR مخصصة لروابطك</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <h3>JSON Formatter</h3>
+                        <p>نسّق وتحقق من صحة JSON</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔐</div>
+                        <h3>Base64 Encoder</h3>
+                        <p>شفّر وفك تشفير Base64</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مجموعة المالية -->
+            <div class="category-group">
+                <h2 class="category-title">💰 الحاسبات المالية</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🕌</div>
+                        <h3>حاسبة الزكاة</h3>
+                        <p>احسب زكاة مالك بدقة شرعية</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">💱</div>
+                        <h3>محول العملات</h3>
+                        <p>حول العملات بأسعار مباشرة</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🏦</div>
+                        <h3>حاسبة القروض</h3>
+                        <p>احسب الأقساط والفوائد</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">💵</div>
+                        <h3>حاسبة الضريبة</h3>
+                        <p>احسب ضريبة القيمة المضافة</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مجموعة التسويق -->
+            <div class="category-group">
+                <h2 class="category-title">📊 أدوات التسويق</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">#️⃣</div>
+                        <h3>مولد Hashtags</h3>
+                        <p>اقتراحات hashtags ذكية لمنشوراتك</p>
+                        <span class="tool-badge new">جديد</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔗</div>
+                        <h3>مختصر الروابط</h3>
+                        <p>اختصر روابطك الطويلة بسهولة</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">📈</div>
+                        <h3>حاسبة ROI</h3>
+                        <p>احسب عائد الاستثمار للحملات</p>
+                        <span class="tool-badge">مجاني</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🔍</div>
+                        <h3>محلل الكلمات المفتاحية</h3>
+                        <p>اكتشف أفضل الكلمات لمحتواك</p>
+                        <span class="tool-badge premium">Premium</span>
+                        <button class="use-btn">استخدم الآن →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
